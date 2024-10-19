@@ -21,3 +21,15 @@ after_success:
     - docker push zeronostalgia/multi-nginx
     - docker push zeronostalgia/multi-server
     - docker push zeronostalgia/multi-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: us-east-2
+    app: multi-container
+    env: Multi-container-env
+    bucket_name: elasticbeanstalk-us-east-2-164371511059
+    bucket_path: docker-multi
+    on:
+        branch: main
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
